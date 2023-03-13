@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <style>
+        .form{
+            margin-left: 300px;
+            height:700px;
+            width:500px;
+            background-color:lightblue;
+
+            
+        }
+        .form-floating{
+            background-color:crimson;
+        }
+        body{
+        
+            background-image:url("./assests/photo-1560179707-f14e90ef3623.jpg") ;
+        }
+    </style>
+    <script>
+        function validate() {
+            const name = document.querySelector("#floatingname");
+            const dob = document.querySelector("#floatingdob");
+            const male = document.querySelector("#flexRadiomale");
+            const female = document.querySelector("#flexRadiofemale");
+            const others = document.querySelector("#flexRadioothers");
+            const Diploma = document.querySelector("#flexRadioDiploma");
+            const Graduate = document.querySelector("#flexRadioGraduate");
+            const PostGraduate = document.querySelector("#flexRadioPost Graduate");
+            const Professional = document.querySelector("#flexRadioProfessional");
+            const markscored = document.querySelector("#floatingmarkscored");
+            const selectgrade = document.querySelector(".form-select");
+            const c1 = document.querySelector("#flexCheckDefaultc1");
+            const c2 = document.querySelector("#flexCheckDefaultc2");
+            const c3 = document.querySelector("#flexCheckDefaultc3");
+            const c4 = document.querySelector("#flexCheckDefaultc4");
+            const c5 = document.querySelector("#flexCheckDefaultc5");
+            const c6 = document.querySelector("#flexCheckDefaultc6");
+            const address = document.querySelector("#floatingaddress");
+            const num = document.querySelector("#floatingnum");
+            const email = document.querySelector("#floatingemail");
+
+            const nameregex = /^([a-zA-Z/s.])$/;
+            const addressregex = /^([a-zA-Z])([0-9])([-/#,/s])$/;
+            const numregex = /^([0-10])$/;
+            const emailregex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).{8,15}$/;
+            const dobregex = /^([0-2][1-9]||[0-3][0-1])([0][1-9]||[1][0-2])([/d][/d][/d][/d])$/;
+
+            if (flexRadiomale.checked) {
+                gender = male;
+            }
+            else if (flexRadiofemale.checked) {
+                gender = female;
+            }
+            else
+                gender = others;
+
+            if (!name || !dob || !male || !female || !others || !Diploma || !Graduate || !PostGraduate || !Professional || !markscored || !selectgrade || !c1 || !c2 || !c3 || !c4 || !c5 || !c6 || !num || !address || !email) {
+                alert("all the details are required");
+                return false;
+            }
+            else if (!nameregex.test(name)) {
+                alert(" it should Contain alphabets and white spaces");
+                return false;
+            }
+            if (!dobregex.match(dob)) {
+                alert("it should be in date formate");
+                return false;
+            }
+            else {
+                var dobDate = new Date(dob);
+                var todayDate = new Date();
+
+                var age = todayDate.getFullYear() - dobDate.getFullYear();
+
+                var month = todayDate.getMonth() - dobDate.getMonth();
+
+                if (month < 0 || (month === 0 && todayDate.getDate() < dobDate.getDate()));
+                age--;
+
+                console.log(age);
+                return false;
+            }
+            if (!addressregex.test(address)) {
+                alert(" it should contain alphabets, numbers, spaces, - , / , #,and comma");
+                return false;
+            }
+             else if(!numregex.test(num))
+             {
+                alert("number should contain 10 digits");
+                return false;
+             }
+             else if(!emailregex.test(email))
+             {
+                alert("should be imn email pattern");
+                return false;
+             }
+             else
+             {
+                alert("registered succesfully");
+                return true;
+             }
+            }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">CANDIDATE DETAILS</span>
+        </div>
+    </nav>
+   <div class="form">
+    <form onsubmit="return validate()" action="pass.html">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingname" placeholder="enter your name">
+            <label for="floatingname">NAME</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingdob" placeholder="enter your dob">
+            <label for="floatingdob">DATE OF BIRTH</label>
+        </div>
+        <div>
+        <label>GENDER</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadiomale">
+            <label class="form-check-label" for="flexRadiomale">
+                MALE
+            </label>
+        </div>
+        <div class="form-check1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadiofemale" checked>
+            <label class="form-check-label" for="flexRadiofemale">
+                FEMALE
+            </label>
+        </div>
+        <div class="form-check1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioothers" checked>
+            <label class="form-check-label" for="flexRadioothers">
+                others
+            </label>
+        </div>
+        </div>
+        <div>
+        <label>QUALIFICATION</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDiploma">
+            <label class="form-check-label" for="flexRadioDiploma">
+                Diploma
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioGraduate" checked>
+            <label class="form-check-label" for="flexRadioGraduate">
+                Graduate
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioPost Graduate" checked>
+            <label class="form-check-label" for="flexRadioPost Graduate">
+                Post Graduate
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioProfessional" checked>
+            <label class="form-check-label" for="flexRadioProfessional">
+                Professional
+            </label>
+        </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingmarkscored" placeholder="enter your marks scored">
+            <label for="floatingmarkscored">MARKS SCORED</label>
+        </div>
+        <div>
+            <label>GRADE</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">A+</option>
+                <option value="2">A</option>
+                <option value="3">B</option>
+                <option value="4">B+</option>
+                <option value="5">C</option>
+                <option value="6">C+</option>
+                <option value="7">D</option>
+                <option value="8">E</option>
+            </select>
+        </div>
+        <label>LANGUAGE KNOWN</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc1">
+            <label class="form-check-label" for="flexCheckDefaultc1">
+                english
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc2">
+            <label class="form-check-label" for="flexCheckDefaultc2">
+                telugu
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc3">
+            <label class="form-check-label" for="flexCheckDefaultc3">
+                hindi
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc4">
+            <label class="form-check-label" for="flexCheckDefaultc4">
+                malayalam
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc5">
+            <label class="form-check-label" for="flexCheckDefaultc5">
+                chinese
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultc6">
+            <label class="form-check-label" for="flexCheckDefaultc6">
+                spanish
+            </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingaddress" placeholder="enter your address">
+            <label for="floatingaddress">ADDRESS</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingnum" placeholder="enter your number">
+            <label for="floatingnum">NUMBER</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingemail" placeholder="enter your email">
+            <label for="floatinemail">EMAIL</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+</html>
